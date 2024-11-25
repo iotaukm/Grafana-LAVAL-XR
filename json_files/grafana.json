@@ -1,0 +1,105 @@
+{
+    // Dashboard-level configurations for annotations, enabling alerts and additional metadata.
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true, // Hides annotation icons for a cleaner view.
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+  
+    "editable": true, // Allows this dashboard to be modified directly in Grafana.
+    "graphTooltip": 0,
+    "id": 21, // Internal identifier for the dashboard, not user-facing.
+  
+    // Definition of panels to visualize data on the dashboard.
+    "panels": [
+      {
+        // A row panel used to organize and group other panels under "Session Overview".
+        "collapsed": false,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+        "id": 27,
+        "title": "Session Overview",
+        "type": "row"
+      },
+      {
+        // A stat panel displaying key metrics with associated data source configurations.
+        "datasource": {
+          "type": "grafana-timestream-datasource",
+          "uid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" // Obfuscated UID
+        },
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "short" // Formats numerical values in short form (e.g., 1k instead of 1000).
+          }
+        },
+        "gridPos": { "h": 3, "w": 9, "x": 0, "y": 1 },
+        "id": 22,
+        "title": "Patient", // Title of the panel displayed on the dashboard.
+        "type": "stat",
+        "targets": [
+          {
+            // Data query configuration for fetching metrics from the defined database and table.
+            "database": "\"xxxxxx\"",
+            "datasource": {
+              "type": "grafana-timestream-datasource",
+              "uid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            },
+            "measure": "SomeMetric",
+            "rawQuery": "SELECT ...", // Placeholder for the actual query fetching the data.
+            "refId": "A",
+            "table": "\"xxxxxx\""
+          }
+        ]
+      }
+    ],
+  
+    // Templates for dynamic data selection in dashboard queries.
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "SampleText",
+            "value": "xxxx-xxxx-xxxx-xxxx"
+          },
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          },
+          "definition": "SELECT ...", // Placeholder query for template options.
+          "label": "PATIENT", // Label displayed in the dropdown menu.
+          "name": "customerID",
+          "type": "query"
+        }
+      ]
+    },
+  
+    // Settings for time range and timezone.
+    "time": {
+      "from": "2024-02-19T14:04:00.389Z",
+      "to": "2024-02-19T14:14:02.852Z"
+    },
+    "timezone": "browser", // Adapts the timezone to match the user's browser.
+    "title": "LAVAL TEMPLATE", // The title of the dashboard displayed in Grafana.
+    "version": 232 // Incremented whenever changes are saved.
+  }
+  
